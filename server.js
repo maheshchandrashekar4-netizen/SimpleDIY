@@ -2,40 +2,42 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const path = require("path");
+
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static("public")); // serve UI
+app.use(express.static("public")); // serves ui.html & icon.png
 
-// ----------------------------
+// ------------------------------
 // Root
-// ----------------------------
+// ------------------------------
 app.get("/", (req, res) => {
     res.send("Simple Custom Activity Running");
 });
 
-// ----------------------------
-// Return config.json
-// ----------------------------
+// ------------------------------
+// Return config.json for SFMC
+// ------------------------------
 app.get("/config.json", (req, res) => {
     res.sendFile(path.join(__dirname, "config.json"));
 });
 
-// ----------------------------
-// JOURNEY BUILDER Lifecycle
-// ----------------------------
+// ------------------------------
+// Journey Builder lifecycle
+// ------------------------------
 app.post("/save", (req, res) => res.json({ status: "ok" }));
 app.post("/validate", (req, res) => res.json({ status: "ok" }));
 app.post("/publish", (req, res) => res.json({ status: "ok" }));
 app.post("/stop", (req, res) => res.json({ status: "ok" }));
 
-// ----------------------------
-// EXECUTE: UPDATE DE
-// ----------------------------
+// ------------------------------
+// EXECUTE — updates a DE
+// ------------------------------
 app.post("/execute", async (req, res) => {
     try {
-        console.log("EXECUTE called");
+        console.log("🚀 EXECUTE called");
 
+        // 1. Auth
         const tokenResp = await axios.post(
             `${process.env.SFMC_AUTH_BASE}/v2/token`,
             {
@@ -47,14 +49,16 @@ app.post("/execute", async (req, res) => {
 
         const token = tokenResp.data.access_token;
 
-        const rowData = {
-            keys: { Email: "test@example.com" },  // primary key in DE
-            values: { Status: "Completed" }        // static update
+        // 2. Row update payload
+        const row = {
+            keys: { Email: "test@example.com" },   // change if needed
+            values: { Status: "Completed" }
         };
 
+        // 3. Send update to DE
         await axios.put(
             `${process.env.SFMC_REST_BASE}/hub/v1/dataevents/key:${process.env.DE_KEY}/rowset`,
-            [rowData],
+            [row],
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -63,15 +67,15 @@ app.post("/execute", async (req, res) => {
             }
         );
 
-        res.json({ status: "row updated" });
+        res.json({ status: "DE updated successfully" });
 
     } catch (err) {
-        console.error(err.response?.data || err);
+        console.error("❌ EXECUTE ERROR", err.response?.data || err);
         res.status(500).json({ error: true });
     }
 });
 
-// ----------------------------
-// Start server
-// ----------------------------
+// ------------------------------
+// Start Server
+// ------------------------------
 app.listen(3000, () => console.log("Server started on port 3000"));
