@@ -1,0 +1,44 @@
+{
+  "workflowApiVersion": "1.1",
+  "type": "REST",
+  "lang": {
+    "en-US": {
+      "name": "Chandra Simple Activity",
+      "description": "Updates a DE with a static value."
+    }
+  },
+  "arguments": {
+    "execute": {
+      "url": "https://SimpleDIY.onrender.com/execute",
+      "verb": "POST",
+      "useJwt": false,
+      "body": "",
+      "header": ""
+    }
+  },
+  "configurationArguments": {
+    "publish": {
+      "url": "https://SimpleDIY.onrender.com/publish"
+    },
+    "validate": {
+      "url": "https://SimpleDIY.onrender.com/validate"
+    },
+    "stop": {
+      "url": "https://SimpleDIY.onrender.com/stop"
+    }
+  },
+  "userInterfaces": {
+    "configTab": {
+      "url": "https://SimpleDIY.onrender.com/ui.html"
+    }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "inArguments": [],
+        "outArguments": []
+      }
+    }
+  },
+  "category": "custom"
+}
