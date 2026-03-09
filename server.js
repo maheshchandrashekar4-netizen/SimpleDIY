@@ -12,7 +12,7 @@ app.use(express.static("public")); // serves ui.html & icon.png
 // Root
 // ------------------------------
 app.get("/", (req, res) => {
-    res.send("Simple Custom Activity Running");
+    res.send("Simple Custom Activity Running2");
 });
 
 // ------------------------------
