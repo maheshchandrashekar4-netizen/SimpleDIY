@@ -18,18 +18,18 @@
   },
   "configurationArguments": {
     "publish": {
-      "url": "https://SimpleDIY.onrender.com/publish"
+      "url": "https://simplediy-1.onrender.com/publish"
     },
     "validate": {
-      "url": "https://SimpleDIY.onrender.com/validate"
+      "url": "https://simplediy-1.onrender.com/validate"
     },
     "stop": {
-      "url": "https://SimpleDIY.onrender.com/stop"
+      "url": "https://simplediy-1.onrender.com/stop"
     }
   },
   "userInterfaces": {
     "configTab": {
-      "url": "https://SimpleDIY.onrender.com/ui.html",
+      "url": "https://simplediy-1.onrender.com/ui.html",
     "height": 500,
     "width": 800
     }
