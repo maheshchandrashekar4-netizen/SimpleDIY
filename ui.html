@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chandra Simple Activity</title>
+</head>
+
+<body style="font-family: Arial; padding: 20px;">
+
+<h2>Chandra Simple Custom Activity</h2>
+<p>UI Loaded Successfully.</p>
+
+<button onclick="save()">Save Activity</button>
+
+<script src="https://jbinteractions-cdn.s3.amazonaws.com/interaction/v1/interaction.js"></script>
+
+<script>
+
+var connection = new Postmonger.Session();
+
+/* Activity loaded */
+connection.on("initActivity", function(data){
+    console.log("Activity initialized", data);
+});
+
+/* When user clicks Next */
+connection.on("clickedNext", function(){
+    connection.trigger("updateActivity");
+});
+
+/* Tell Journey Builder UI is ready */
+connection.trigger("ready");
+
+function save(){
+    connection.trigger("updateActivity");
+}
+
+</script>
+
+</body>
+</html>
