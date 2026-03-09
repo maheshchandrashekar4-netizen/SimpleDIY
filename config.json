@@ -29,7 +29,9 @@
   },
   "userInterfaces": {
     "configTab": {
-      "url": "https://SimpleDIY.onrender.com/ui.html"
+      "url": "https://SimpleDIY.onrender.com/ui.html",
+    "height": 500,
+    "width": 800
     }
   },
   "schema": {
