@@ -1,6 +1,10 @@
 {
   "workflowApiVersion": "1.1",
   "type": "REST",
+  "metaData": {
+    "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWejx1A1AUS1FgggjfcC-4iUXMg7C-GaJdrQ&s",
+    "category": "custom"
+  },
   "lang": {
     "en-US": {
       "name": "Chandra Simple Activity4",
