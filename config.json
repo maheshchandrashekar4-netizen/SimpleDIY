@@ -13,7 +13,7 @@
   },
   "arguments": {
     "execute": {
-      "url": "https://SimpleDIY.onrender.com/execute",
+      "url": "https://simplediy-1.onrender.com/execute",
       "verb": "POST",
       "useJwt": false,
       "body": "",
@@ -32,7 +32,7 @@
     }
   },
   "userInterfaces": {
-    "configTab": {
+    "configModal": {
       "url": "https://simplediy-1.onrender.com/ui.html",
     "height": 500,
     "width": 800
