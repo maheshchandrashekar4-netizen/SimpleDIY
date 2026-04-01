@@ -2,6 +2,37 @@
 <html>
 <head>
   <title>Chandra Simple Activity</title>
+  <script>
+var connection = new Postmonger.Session();
+var payload = {};
+
+/* Step 1: Receive activity data */
+connection.on("initActivity", function(data){
+    console.log("Activity initialized", data);
+    payload = data || {};
+});
+
+/* Step 2: When user clicks Next */
+connection.on("clickedNext", function(){
+    save();
+});
+
+/* Step 3: Save function */
+function save(){
+
+    payload.name = "Chandra Simple Activity4";
+
+    /* THIS IS CRITICAL */
+    payload.metaData = payload.metaData || {};
+    payload.metaData.isConfigured = true;
+
+    connection.trigger("updateActivity", payload);
+}
+
+/* Step 4: Tell JB UI is ready */
+connection.trigger("ready");
+
+</script>
 </head>
 
 <body style="font-family: Arial; padding: 20px;">
