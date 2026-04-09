@@ -1,31 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Journey Logger</title>
+</head>
+
+<body style="font-family: Arial; padding: 20px;">
+
+<h2>Journey Entry Logger</h2>
+<p>This activity logs when a contact enters a journey.</p>
+
+<script src="https://jbinteractions-cdn.s3.amazonaws.com/interaction/v1/interaction.js"></script>
+
 <script>
 var connection = new Postmonger.Session();
 var payload = {};
 
-/* Step 1: Receive activity data */
+/* Receive existing config */
 connection.on("initActivity", function(data){
-    console.log("Activity initialized", data);
     payload = data || {};
 });
 
-/* Step 2: When user clicks Next */
+/* When user clicks Done */
 connection.on("clickedNext", function(){
     save();
 });
 
-/* Step 3: Save function */
+/* Save config */
 function save(){
 
-    payload.name = "Chandra Simple Activity4";
+    payload.name = "Journey Entry Logger";
 
-    /* THIS IS CRITICAL */
     payload.metaData = payload.metaData || {};
     payload.metaData.isConfigured = true;
 
     connection.trigger("updateActivity", payload);
 }
 
-/* Step 4: Tell JB UI is ready */
+/* Tell JB UI ready */
 connection.trigger("ready");
 
 </script>
+
+</body>
+</html>
