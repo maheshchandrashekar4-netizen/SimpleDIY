@@ -38,17 +38,17 @@ app.post("/execute", (req, res) => {
 
 /* REQUIRED ENDPOINTS */
 app.post("/publish", (req, res) => {
-  console.log("PUBLISH CALLED");
+  console.log("PUBLISH");
   res.status(200).send({});
 });
 
 app.post("/validate", (req, res) => {
-  console.log("VALIDATE CALLED");
+  console.log("VALIDATE");
   res.status(200).send({ valid: true });
 });
 
 app.post("/stop", (req, res) => {
-  console.log("STOP CALLED");
+  console.log("STOP");
   res.status(200).send({});
 });
 
