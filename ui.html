@@ -7,7 +7,7 @@
 <body style="font-family: Arial; padding: 20px;">
 
 <h2>Journey Entry Logger</h2>
-<p>This activity logs when a contact enters a journey.</p>
+<p>Configured automatically.</p>
 
 <script src="https://jbinteractions-cdn.s3.amazonaws.com/interaction/v1/interaction.js"></script>
 
@@ -15,22 +15,17 @@
 var connection = new Postmonger.Session();
 var payload = {};
 
-/* Step 1: Init */
 connection.on("initActivity", function(data){
     console.log("INIT", data);
-    payload = data || {};
 
-    /* Auto mark configured */
+    payload = data || {};
     payload.metaData = payload.metaData || {};
     payload.metaData.isConfigured = true;
-
     payload.name = "Journey Entry Logger";
 
-    /* 🔥 IMPORTANT: Auto save immediately */
     connection.trigger("updateActivity", payload);
 });
 
-/* Step 2: Ready */
 connection.trigger("ready");
 
 </script>
