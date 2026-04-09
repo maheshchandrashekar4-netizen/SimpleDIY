@@ -15,28 +15,22 @@
 var connection = new Postmonger.Session();
 var payload = {};
 
-/* Receive existing config */
+/* Step 1: Init */
 connection.on("initActivity", function(data){
+    console.log("INIT", data);
     payload = data || {};
-});
 
-/* When user clicks Done */
-connection.on("clickedNext", function(){
-    save();
-});
-
-/* Save config */
-function save(){
-
-    payload.name = "Journey Entry Logger";
-
+    /* Auto mark configured */
     payload.metaData = payload.metaData || {};
     payload.metaData.isConfigured = true;
 
-    connection.trigger("updateActivity", payload);
-}
+    payload.name = "Journey Entry Logger";
 
-/* Tell JB UI ready */
+    /* 🔥 IMPORTANT: Auto save immediately */
+    connection.trigger("updateActivity", payload);
+});
+
+/* Step 2: Ready */
 connection.trigger("ready");
 
 </script>
